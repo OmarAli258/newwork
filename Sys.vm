@@ -1,7 +1,7 @@
 function Sys.init 0
     return
 
-function Sys.min 0
+function Sys.min 2
     pop temp 0
     pop temp 1
     push temp 1
@@ -14,7 +14,7 @@ label LESSER
     push temp 1
     return
 
-function Sys.max 0
+function Sys.max 2
     pop temp 0
     pop temp 1
     push temp 1
