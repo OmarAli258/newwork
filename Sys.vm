@@ -1,26 +1,13 @@
 // Sys.vm
 
-// Sys.init: Initializes the array and calls Sys.range to compute the range
+// Test Sys.min: Computes the minimum of two values (4 and 2)
 function Sys.init 0
-    // Initialize the array in the Heap
-    push constant 3
-    pop static 0     // array[0] = 3
-    push constant 7
-    pop static 1     // array[1] = 7
-    push constant 1
-    pop static 2     // array[2] = 1
-    push constant 9
-    pop static 3     // array[3] = 9
-    push constant 4
-    pop static 4     // array[4] = 4
+    push constant 4       // Push 4 onto the stack
+    push constant 2       // Push 2 onto the stack
+    call Sys.min 2        // Call Sys.min with 2 arguments
+    // After calling Sys.min, 2 should be at the top of the stack
 
-    // Call Sys.range to calculate the range
-    push constant 2048  // Address of the array
-    push constant 5     // Number of elements
-    call Sys.range 2    // Jump to Sys.range to calculate range
-
-    // After calculating range, halt the program
-label HALT
+    // Return to HALT
     goto HALT
 
 // Sys.min: Computes the minimum of two values on the stack
@@ -37,6 +24,16 @@ label LESSER
     push temp 1 // Push arg1 (arg1 is smaller)
     return
 
+// Test Sys.max: Computes the maximum of two values (4 and 2)
+function Sys.init 0
+    push constant 4       // Push 4 onto the stack
+    push constant 2       // Push 2 onto the stack
+    call Sys.max 2        // Call Sys.max with 2 arguments
+    // After calling Sys.max, 4 should be at the top of the stack
+
+    // Return to HALT
+    goto HALT
+
 // Sys.max: Computes the maximum of two values on the stack
 function Sys.max 0
     pop temp 0  // Pop the second value (arg2)
@@ -50,6 +47,16 @@ function Sys.max 0
 label GREATER
     push temp 1 // Push arg1 (arg1 is larger)
     return
+
+// Test Sys.range: Computes the range of the array [3, 7, 1, 9, 4]
+function Sys.init 0
+    push constant 2048    // Address of the array (starting address of static memory)
+    push constant 5       // Number of elements in the array
+    call Sys.range 2      // Call Sys.range with the array address and number of elements
+    // After calling Sys.range, 8 should be at the top of the stack (9 - 1 = 8)
+
+    // Return to HALT
+    goto HALT
 
 // Sys.range: Computes the range of values in the array
 function Sys.range 2
@@ -111,3 +118,7 @@ label END_LOOP
 label RETURN_ZERO
     push constant 0
     return
+
+// HALT label: Infinite loop to stop the program
+label HALT
+    goto HALT
