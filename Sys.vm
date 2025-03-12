@@ -3,6 +3,9 @@ push constant 4
 push constant 2
 call Sys.min 2
 call Sys.max 2
+push constant 3
+push constant 5
+call Sys.range 2
 return
 
 function Sys.min 0
@@ -26,3 +29,24 @@ return
 label GREATER
 push temp 1
 return
+
+function Sys.range 2
+push argument 1
+if-goto END_RANGE
+push constant 0
+return
+
+label RANGE_LOOP
+push argument 0
+push constant 0
+add
+pop temp 0
+push temp 0
+push constant 2
+call Memory.load 1
+push argument 0
+push constant 2
+call Memory.load 2
+call Sys.max 2
+call Sys.min 2
+push ar
