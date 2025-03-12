@@ -1,11 +1,28 @@
-function sys.min 0
+function Sys.init 0
 push constant 4
 push constant 2
-lt 
-if-Goto LESSER 
-// basically checks if the stack has -1 or 0 rn if its 0(false) it does nothing and if true it jumps
-push argument 1
+call Sys.min 2
+call Sys.max 2
+return
+
+function Sys.min 0
+pop temp 0
+pop temp 1
+lt
+if-goto LESSER
+push temp 1
 return
 label LESSER
-push argument 0
+push temp 0
+return
+
+function Sys.max 0
+pop temp 0
+pop temp 1
+lt
+if-goto GREATER
+push temp 0
+return
+label GREATER
+push temp 1
 return
