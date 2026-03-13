@@ -1,0 +1,4 @@
+dig @198.41.0.4 www.uber.com +norecurse
+dig @192.41.162.30 www.uber.com +norecurse
+dig @204.74.66.126 www.uber.com +norecurse
+69.48.218.1
